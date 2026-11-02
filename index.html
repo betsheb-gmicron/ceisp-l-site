@@ -1,0 +1,528 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.454.0/font/lucide.css">
+<title>CEISP-L — Espace Membres</title>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+[data-theme]{--bg:#FBFCFD;--bg2:#F1F4F7;--card:#FFFFFF;--ink:#0E1B26;--ink2:#4A5A68;--line:#DCE3E9;--primary:#0A3D62;--onprimary:#FFFFFF;--accent:#0A3D62;--copper:#B87333;--coppertx:#8F561F;--green:#16A085;--greentx:#0E7461;--band:#0A3D62;--bandink:#E9F0F6;--bandink2:#A9C1D6;--stripe:rgba(10,61,98,.07)}
+[data-theme="dark"]{--bg:#0A131C;--bg2:#0E1A26;--card:#122131;--ink:#E7EDF2;--ink2:#A2B1BE;--line:#22364A;--primary:#7DB8E3;--onprimary:#06233A;--accent:#8CC2EA;--copper:#D08A4C;--coppertx:#E0A270;--green:#2EC4A0;--greentx:#4ED3B2;--band:#0D2B44;--bandink:#E7EDF2;--bandink2:#9DB6CB;--stripe:rgba(140,194,234,.07)}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--coppertx)}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s">
+
+<a href="#main" style="position:absolute;left:-9999px;top:8px;background:var(--primary);color:var(--onprimary);padding:8px 14px;border-radius:6px;z-index:100" style-focus="left:8px">Aller au contenu</a>
+
+<header style="position:sticky;top:0;z-index:40;background:color-mix(in oklab,var(--bg) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)">
+  <div style="max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px">
+    <a href="#top" aria-label="CEISP-L, retour en haut" style="display:flex;align-items:center;gap:10px;color:var(--ink)">
+      <span style="width:36px;height:36px;border-radius:8px;background:var(--primary);color:var(--onprimary);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.02em">CE</span>
+      <span style="display:flex;flex-direction:column;line-height:1.15">
+        <span style="font-weight:800;letter-spacing:.02em">CEISP-L</span>
+        <span style="font-size:11px;color:var(--ink2)">Université de Kolwezi</span>
+      </span>
+    </a>
+    <nav aria-label="Navigation principale" style="order:3;flex:1 1 100%;display:flex;gap:4px 22px;overflow-x:auto;font-size:14px;font-weight:600;padding-bottom:2px">
+      <a href="#apropos" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Le centre</a>
+      <a href="#axes" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Expertises</a>
+      <a href="#experts" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Experts</a>
+      <a href="#offre" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Partenaires</a>
+      <a href="#approche" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Approche</a>
+      <a href="#projets" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Projets</a>
+      <a href="#contact" style="color:var(--ink2);white-space:nowrap" style-hover="color:var(--ink)">Contact</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:17px;transition:border-color .2s" style-hover="border-color:var(--copper)">
+        <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><i class="icon-sun" aria-hidden="true"></i></sc-if>
+        <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><i class="icon-moon" aria-hidden="true"></i></sc-if>
+      </button>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:var(--onprimary);padding:10px 16px;border-radius:999px;font-size:14px;font-weight:700;transition:transform .2s" style-hover="transform:translateY(-1px);color:var(--onprimary)">Soumettre un besoin</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section id="top" aria-labelledby="hero-title" style="max-width:1200px;margin:0 auto;padding:56px 20px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px;align-items:center">
+  <div data-reveal="1" style="display:flex;flex-direction:column;gap:24px">
+    <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--coppertx)">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--copper)"></span>Kolwezi · Lualaba · RDC
+    </span>
+    <h1 id="hero-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(36px,6vw,62px);line-height:1.05;letter-spacing:-.01em;text-wrap:balance">CEISP-L — Science, santé et territoire au cœur du <em style="font-style:italic;color:var(--coppertx)">Lualaba</em></h1>
+    <p style="margin:0;font-size:clamp(16px,2vw,19px);color:var(--ink2);max-width:58ch;text-wrap:pretty">Un centre d'expertise universitaire qui met en relation chercheurs, entreprises et institutions autour de la santé des populations, de la santé environnementale et de l'approche One Health en contexte minier.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="#experts" style="display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:var(--onprimary);padding:14px 22px;border-radius:999px;font-weight:700;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(10,61,98,.6);color:var(--onprimary)">Découvrir nos experts <i class="icon-arrow-right" aria-hidden="true"></i></a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--ink);color:var(--ink);padding:13px 22px;border-radius:999px;font-weight:700;transition:background .2s,color .2s" style-hover="background:var(--ink);color:var(--bg)">Soumettre un besoin</a>
+    </div>
+    <p style="margin:8px 0 0;font-size:13px;color:var(--ink2);border-top:1px solid var(--line);padding-top:16px;max-width:58ch">L'expertise santé publique du Lualaba au service des populations, des entreprises et de la recherche.</p>
+  </div>
+
+  <div data-reveal="1" role="img" aria-label="Emplacement visuel : carte stylisée du Lualaba et de la Copperbelt" style="position:relative;aspect-ratio:4/4.2;border-radius:20px;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--stripe) 0 1px,transparent 1px 12px),var(--bg2);overflow:hidden">
+    <div style="position:absolute;left:8%;top:14%;width:62%;aspect-ratio:1;border-radius:50%;border:1px dashed var(--line)"></div>
+    <div style="position:absolute;left:22%;top:28%;width:34%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line)"></div>
+    <div style="position:absolute;left:38%;top:44%;width:14px;height:14px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 8px color-mix(in oklab,var(--copper) 22%,transparent)"></div>
+    <div style="position:absolute;left:calc(38% + 26px);top:calc(44% - 4px);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink2);line-height:1.4">KOLWEZI<br>10°43′S · 25°28′E</div>
+    <div style="position:absolute;top:18px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink2);letter-spacing:.04em">[ visuel : carte stylisée du Lualaba / Copperbelt ]</div>
+    <div style="position:absolute;right:18px;bottom:18px;display:grid;grid-template-columns:repeat(3,64px);gap:6px">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink2)">29</span><span style="font-size:22px;font-weight:800;color:var(--coppertx);line-height:1">Cu</span><span style="font-size:9px;color:var(--ink2)">Cuivre</span></div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink2)">27</span><span style="font-size:22px;font-weight:800;color:var(--accent);line-height:1">Co</span><span style="font-size:9px;color:var(--ink2)">Cobalt</span></div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink2)">92</span><span style="font-size:22px;font-weight:800;color:var(--greentx);line-height:1">U</span><span style="font-size:9px;color:var(--ink2)">Uranium</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="apropos" aria-labelledby="apropos-title" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);scroll-margin-top:90px">
+  <div style="max-width:1200px;margin:0 auto;padding:80px 20px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:32px 64px">
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">01 — Qui sommes-nous</span>
+        <h2 id="apropos-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15;text-wrap:balance">Un centre universitaire ancré dans la Copperbelt africaine</h2>
+      </div>
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:16px;color:var(--ink2);font-size:17px;text-wrap:pretty">
+        <p style="margin:0">Le <strong style="color:var(--ink)">Centre d'Expertise et d'Innovations en Santé Publique du Lualaba</strong> est rattaché à l'École de Santé Publique de l'Université de Kolwezi. Il fédère chercheurs, cliniciens, ingénieurs et biologistes autour d'une même exigence : produire des données fiables et les mettre au service des décisions.</p>
+        <p style="margin:0">Kolwezi, nœud majeur de la Copperbelt (cuivre, cobalt), compte plus d'un million d'habitants. L'activité minière y crée des défis sanitaires inédits — exposition aux métaux, radioactivité, délocalisations, zoonoses — qui appellent une expertise de terrain, indépendante et rigoureuse.</p>
+      </div>
+    </div>
+    <dl data-reveal="1" style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid var(--line)">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="padding:24px 4px 0;display:flex;flex-direction:column-reverse;gap:6px">
+          <dt style="font-size:14px;color:var(--ink2)">{{ s.label }}</dt>
+          <dd style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(44px,6vw,64px);font-weight:600;line-height:1;color:var(--accent);display:flex;align-items:baseline;gap:10px">{{ s.value }}<span style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:400;color:var(--ink2);letter-spacing:.04em">à confirmer</span></dd>
+        </div>
+      </sc-for>
+    </dl>
+  </div>
+</section>
+
+<section id="axes" aria-labelledby="axes-title" style="max-width:1200px;margin:0 auto;padding:88px 20px;display:flex;flex-direction:column;gap:40px;scroll-margin-top:90px">
+  <div data-reveal="1" style="display:flex;flex-direction:column;gap:14px;max-width:720px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">02 — Nos axes d'expertise</span>
+    <h2 id="axes-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15;text-wrap:balance">Huit domaines, une approche intégrée</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
+    <sc-for list="{{ axes }}" as="a" hint-placeholder-count="8">
+      <article data-reveal="1" style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .25s,border-color .25s,box-shadow .25s" style-hover="transform:translateY(-3px);border-color:var(--copper);box-shadow:0 14px 30px -20px rgba(10,30,50,.35)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="width:44px;height:44px;border-radius:10px;background:color-mix(in oklab,var(--accent) 10%,transparent);color:var(--accent);display:grid;place-items:center;font-size:21px"><i class="{{ a.icon }}" aria-hidden="true"></i></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink2)">{{ a.num }}</span>
+        </div>
+        <h3 style="margin:0;font-size:17px;font-weight:700;line-height:1.3">{{ a.title }}</h3>
+        <p style="margin:0;font-size:14px;color:var(--ink2);text-wrap:pretty">{{ a.desc }}</p>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="experts" aria-labelledby="experts-title" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);scroll-margin-top:90px">
+  <div style="max-width:1200px;margin:0 auto;padding:88px 20px;display:flex;flex-direction:column;gap:32px">
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:680px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">03 — Espace Membres</span>
+        <h2 id="experts-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15">Annuaire des experts</h2>
+        <p style="margin:0;color:var(--ink2);text-wrap:pretty">Identifiez le chercheur adapté à votre besoin, puis contactez-le directement via le centre.</p>
+      </div>
+      <p aria-live="polite" style="margin:0;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink2)">{{ resultLabel }}</p>
+    </div>
+
+    <div role="group" aria-label="Filtres de l'annuaire" style="display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);min-width:110px">Axe</span>
+        <sc-for list="{{ axisChips }}" as="c" hint-placeholder-count="9">
+          <button type="button" onClick="{{ c.onClick }}" aria-pressed="{{ c.pressed }}" style="border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s" style-hover="border-color:var(--copper)">{{ c.label }}</button>
+        </sc-for>
+      </div>
+      <div style="height:1px;background:var(--line)"></div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);min-width:110px">Collaboration</span>
+        <sc-for list="{{ collabChips }}" as="c" hint-placeholder-count="6">
+          <button type="button" onClick="{{ c.onClick }}" aria-pressed="{{ c.pressed }}" style="border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.color }};border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s" style-hover="border-color:var(--copper)">{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px">
+      <sc-for list="{{ shownExperts }}" as="e" hint-placeholder-count="6">
+        <article style="background:var(--card);border:1px {{ e.borderStyle }} var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px -22px rgba(10,30,50,.4);border-color:var(--copper)">
+          <div style="display:flex;gap:16px;align-items:center">
+            <div role="img" aria-label="{{ e.photoAlt }}" style="flex:none;width:72px;height:72px;border-radius:50%;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--stripe) 0 1px,transparent 1px 7px),var(--bg2);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:var(--accent)">{{ e.initials }}</div>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+              <sc-if value="{{ e.open }}" hint-placeholder-val="{{ false }}">
+                <span style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--greentx);border:1px solid var(--green);border-radius:4px;padding:1px 6px;margin-bottom:4px">Poste ouvert</span>
+              </sc-if>
+              <h3 style="margin:0;font-size:17px;font-weight:700;line-height:1.3">{{ e.name }}</h3>
+              <span style="font-size:13px;color:var(--ink2)">{{ e.title }}</span>
+            </div>
+          </div>
+          <p style="margin:0;font-size:14px;font-weight:600;color:var(--coppertx)">{{ e.spec }}</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ e.tags }}" as="t" hint-placeholder-count="3">
+              <li style="font-size:12px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:3px 9px;color:var(--ink2)">{{ t }}</li>
+            </sc-for>
+          </ul>
+          <button type="button" onClick="{{ e.onOpen }}" style="margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:transparent;border:0;padding:6px 0;font:inherit;font-size:14px;font-weight:700;color:var(--accent);cursor:pointer;border-bottom:1.5px solid currentColor" style-hover="color:var(--coppertx)">{{ e.cta }} <i class="icon-arrow-up-right" aria-hidden="true"></i></button>
+        </article>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:40px 20px;border:1px dashed var(--line);border-radius:14px;color:var(--ink2);display:flex;flex-direction:column;align-items:center;gap:12px">
+        <span>Aucun expert ne correspond à ces critères pour le moment.</span>
+        <button type="button" onClick="{{ resetFilters }}" style="font:inherit;font-weight:700;background:var(--primary);color:var(--onprimary);border:0;border-radius:999px;padding:9px 18px;cursor:pointer">Réinitialiser les filtres</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="offre" aria-labelledby="offre-title" style="max-width:1200px;margin:0 auto;padding:88px 20px;display:flex;flex-direction:column;gap:40px;scroll-margin-top:90px">
+  <div data-reveal="1" style="display:flex;flex-direction:column;gap:14px;max-width:720px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">04 — Ce que nous offrons</span>
+    <h2 id="offre-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15;text-wrap:balance">Trois publics, une même exigence de rigueur</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+    <sc-for list="{{ offers }}" as="o" hint-placeholder-count="3">
+      <article data-reveal="1" style="background:var(--card);border:1px solid var(--line);border-top:3px solid {{ o.color }};border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <i class="{{ o.icon }}" aria-hidden="true" style="font-size:22px;color:{{ o.color }}"></i>
+          <h3 style="margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em">{{ o.title }}</h3>
+        </div>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+          <sc-for list="{{ o.items }}" as="it" hint-placeholder-count="5">
+            <li style="display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.45"><i class="icon-check" aria-hidden="true" style="color:var(--greentx);margin-top:3px;flex:none"></i><span>{{ it }}</span></li>
+          </sc-for>
+        </ul>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="approche" aria-labelledby="approche-title" style="background:var(--band);color:var(--bandink);scroll-margin-top:90px">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 20px;display:flex;flex-direction:column;gap:48px">
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px 64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#E3A877">05 — Notre approche</span>
+        <h2 id="approche-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.15;text-wrap:balance">Six engagements, une boussole méthodologique</h2>
+      </div>
+      <p style="margin:0;color:var(--bandink2);font-size:17px;text-wrap:pretty">Ces priorités d'action guident chacune de nos missions, de la mesure de terrain à la restauration des sites.</p>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));border-top:1px solid rgba(233,240,246,.18)">
+      <sc-for list="{{ engagements }}" as="g" hint-placeholder-count="6">
+        <li data-reveal="1" style="padding:28px 24px 28px 0;border-bottom:1px solid rgba(233,240,246,.18);display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#E3A877">{{ g.num }}</span>
+          <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:600;letter-spacing:.01em">{{ g.title }}</h3>
+          <p style="margin:0;color:var(--bandink2);font-size:15px;text-wrap:pretty">{{ g.desc }}</p>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section id="projets" aria-labelledby="projets-title" style="max-width:1200px;margin:0 auto;padding:88px 20px;display:flex;flex-direction:column;gap:40px;scroll-margin-top:90px">
+  <div data-reveal="1" style="display:flex;flex-direction:column;gap:14px;max-width:720px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">06 — Projets &amp; publications</span>
+    <h2 id="projets-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15">Travaux phares</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+    <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+      <article data-reveal="1" style="background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px -22px rgba(10,30,50,.4)">
+        <div role="img" aria-label="{{ p.imgAlt }}" style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,var(--stripe) 0 1px,transparent 1px 10px),var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:flex-end;padding:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink2)">[ {{ p.img }} ]</div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase">
+            <span style="color:var(--coppertx)">{{ p.tag }}</span>
+            <span style="color:var(--ink2)">{{ p.status }}</span>
+          </div>
+          <h3 style="margin:0;font-size:17px;font-weight:700;line-height:1.35;text-wrap:pretty">{{ p.title }}</h3>
+          <p style="margin:0;font-size:14px;color:var(--ink2);text-wrap:pretty">{{ p.desc }}</p>
+          <p style="margin:auto 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--ink2);font-style:italic">{{ p.ref }}</p>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="contact-title" style="background:var(--bg2);border-top:1px solid var(--line);scroll-margin-top:90px">
+  <div style="max-width:1200px;margin:0 auto;padding:88px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px 56px;align-items:start">
+    <div data-reveal="1" style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--coppertx)">07 — Soumettre un besoin</span>
+        <h2 id="contact-title" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.15;text-wrap:balance">Parlons de votre projet</h2>
+        <p style="margin:0;color:var(--ink2);text-wrap:pretty">Décrivez votre besoin : le centre l'oriente vers l'expert ou l'équipe la plus adaptée.</p>
+      </div>
+      <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px;background:#128C4A;color:#FFFFFF;padding:16px 20px;border-radius:14px;transition:transform .2s" style-hover="transform:translateY(-2px);color:#FFFFFF">
+        <i class="icon-message-circle" aria-hidden="true" style="font-size:26px"></i>
+        <span style="display:flex;flex-direction:column;line-height:1.3"><strong>Écrire sur WhatsApp Business</strong><span style="font-size:13px;opacity:.9">Réponse rapide · numéro à compléter</span></span>
+        <i class="icon-arrow-right" aria-hidden="true" style="margin-left:auto"></i>
+      </a>
+      <address style="font-style:normal;display:flex;flex-direction:column;gap:16px;font-size:15px">
+        <div style="display:flex;gap:14px"><i class="icon-building-2" aria-hidden="true" style="color:var(--accent);margin-top:3px"></i><span><strong>CEISP-L</strong> — École de Santé Publique, Université de Kolwezi</span></div>
+        <div style="display:flex;gap:14px"><i class="icon-map-pin" aria-hidden="true" style="color:var(--accent);margin-top:3px"></i><span>Kolwezi, Province du Lualaba, République Démocratique du Congo</span></div>
+        <div style="display:flex;gap:14px"><i class="icon-mail" aria-hidden="true" style="color:var(--accent);margin-top:3px"></i><a href="mailto:malandj.kes@unilu.ad.cd">malandj.kes@unilu.ad.cd</a></div>
+        <div style="display:flex;gap:14px"><i class="icon-phone" aria-hidden="true" style="color:var(--accent);margin-top:3px"></i><span style="color:var(--ink2)">+243 — à compléter</span></div>
+      </address>
+    </div>
+
+    <div data-reveal="1" style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,36px)">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;padding:24px 0">
+          <span style="width:52px;height:52px;border-radius:50%;background:color-mix(in oklab,var(--green) 16%,transparent);color:var(--greentx);display:grid;place-items:center;font-size:24px"><i class="icon-check" aria-hidden="true"></i></span>
+          <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600">Merci, votre demande est enregistrée</h3>
+          <p style="margin:0;color:var(--ink2)">L'équipe du CEISP-L revient vers vous sous quelques jours ouvrés.</p>
+          <button type="button" onClick="{{ resetForm }}" style="font:inherit;font-weight:700;background:transparent;border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;padding:9px 18px;cursor:pointer">Nouvelle demande</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onSubmit }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Nom complet *
+            <input name="nom" required="required" autocomplete="name" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)" style-focus="border-color:var(--accent);outline:none">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Organisation *
+            <input name="organisation" required="required" autocomplete="organization" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)" style-focus="border-color:var(--accent);outline:none">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Type de demande *
+            <select name="type" required="required" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)">
+              <option value="">Sélectionner…</option>
+              <option>Entreprise</option>
+              <option>Université</option>
+              <option>Institution / bailleur</option>
+              <option>Média</option>
+              <option>Autre</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Axe d'expertise recherché
+            <select name="axe" value="{{ formAxis }}" onChange="{{ onAxisChange }}" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)">
+              <option value="">Je ne sais pas encore</option>
+              <sc-for list="{{ axes }}" as="a" hint-placeholder-count="8">
+                <option value="{{ a.id }}">{{ a.title }}</option>
+              </sc-for>
+            </select>
+          </label>
+          <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Description du besoin *
+            <textarea name="description" required="required" rows="5" placeholder="Contexte, objectifs, population ou site concerné…" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical" style-focus="border-color:var(--accent);outline:none"></textarea>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Délai souhaité
+            <select name="delai" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)">
+              <option>Moins d'un mois</option>
+              <option>1 à 3 mois</option>
+              <option>3 à 6 mois</option>
+              <option>Plus de 6 mois</option>
+              <option>Flexible</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700">Email *
+            <input type="email" name="email" required="required" autocomplete="email" style="font:inherit;font-size:15px;font-weight:500;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)" style-focus="border-color:var(--accent);outline:none">
+          </label>
+          <div style="grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:6px">
+            <span style="font-size:12px;color:var(--ink2)">* Champs obligatoires. Données traitées par le CEISP-L uniquement.</span>
+            <button type="submit" style="display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;background:var(--primary);color:var(--onprimary);border:0;border-radius:999px;padding:14px 24px;cursor:pointer;transition:transform .2s" style-hover="transform:translateY(-2px)">Envoyer la demande <i class="icon-send" aria-hidden="true"></i></button>
+          </div>
+        </form>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1px solid var(--line)">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 20px 32px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:14px;grid-column:span 1">
+        <div role="img" aria-label="Emplacement du logo CEISP-L" style="width:140px;height:48px;border:1px dashed var(--line);border-radius:8px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink2);background:repeating-linear-gradient(135deg,var(--stripe) 0 1px,transparent 1px 8px)">logo CEISP-L</div>
+        <p style="margin:0;font-size:14px;color:var(--ink2);max-width:30ch">Un centre de l'École de Santé Publique de l'Université de Kolwezi.</p>
+      </div>
+      <nav aria-label="Navigation de pied de page" style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <span style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:4px">Navigation</span>
+        <a href="#apropos">Le centre</a><a href="#axes">Expertises</a><a href="#experts">Annuaire des experts</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
+      </nav>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <span style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:4px">Institutions</span>
+        <a href="#">Université de Kolwezi</a><a href="#">DPS Lualaba</a><a href="#">Partenaires institutionnels</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink2)">
+      <span>© {{ year }} CEISP-L · Kolwezi, RDC</span>
+      <div style="display:flex;gap:20px"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showFloat }}" hint-placeholder-val="{{ true }}">
+  <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" aria-label="Contacter le CEISP-L sur WhatsApp" style="position:fixed;right:18px;bottom:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:#128C4A;color:#FFFFFF;display:grid;place-items:center;font-size:26px;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);transition:transform .2s" style-hover="transform:scale(1.06);color:#FFFFFF"><i class="icon-message-circle" aria-hidden="true"></i></a>
+</sc-if>
+
+<sc-if value="{{ hasSelected }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeProfile }}" style="position:fixed;inset:0;z-index:60;background:rgba(6,18,28,.55);display:flex;align-items:center;justify-content:center;padding:16px">
+    <div role="dialog" aria-modal="true" aria-labelledby="profile-name" onClick="{{ stop }}" style="background:var(--card);color:var(--ink);border-radius:18px;max-width:560px;width:100%;max-height:90vh;overflow:auto;padding:28px;display:flex;flex-direction:column;gap:20px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)">
+      <div style="display:flex;gap:16px;align-items:center">
+        <div style="flex:none;width:84px;height:84px;border-radius:50%;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--stripe) 0 1px,transparent 1px 7px),var(--bg2);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--accent)">{{ sel.initials }}</div>
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+          <h3 id="profile-name" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:600;line-height:1.2">{{ sel.name }}</h3>
+          <span style="font-size:14px;color:var(--ink2)">{{ sel.title }}</span>
+        </div>
+        <button type="button" onClick="{{ closeProfile }}" aria-label="Fermer le profil" style="align-self:flex-start;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:16px"><i class="icon-x" aria-hidden="true"></i></button>
+      </div>
+      <p style="margin:0;font-size:13px;color:var(--ink2)">{{ sel.affil }}</p>
+      <p style="margin:0;font-size:15px;line-height:1.65;text-wrap:pretty">{{ sel.bio }}</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2)">Axes</span>
+        <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ sel.axisLabels }}" as="x" hint-placeholder-count="3"><span style="font-size:13px;border:1px solid var(--line);border-radius:6px;padding:3px 9px">{{ x }}</span></sc-for></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2)">Collaborations proposées</span>
+        <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ sel.collabLabels }}" as="x" hint-placeholder-count="3"><span style="font-size:13px;background:color-mix(in oklab,var(--green) 12%,transparent);color:var(--greentx);border-radius:6px;padding:3px 9px;font-weight:600">{{ x }}</span></sc-for></div>
+      </div>
+      <button type="button" onClick="{{ contactFromProfile }}" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:700;background:var(--primary);color:var(--onprimary);border:0;border-radius:999px;padding:14px 22px;cursor:pointer">{{ sel.contactCta }} <i class="icon-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;},&quot;showWhatsappFloat&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;243000000000&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const AXES = [
+  {id:'env', icon:'icon-flask-conical', short:'Santé environnementale', title:'Santé environnementale & métaux lourds', desc:'Exposition au Pb, Cd, As, Mn, Co, Cu, Ni, Zn et à l’uranium : air, eau, sols, biomarqueurs.'},
+  {id:'epi', icon:'icon-activity', short:'Épidémiologie', title:'Épidémiologie & surveillance', desc:'Mpox, zoonoses et maladies tropicales : systèmes de surveillance et enquêtes de terrain.'},
+  {id:'onehealth', icon:'icon-leaf', short:'One Health', title:'One Health', desc:'Interface humain, animal et environnement dans les territoires miniers.'},
+  {id:'pop', icon:'icon-users', short:'Populations riveraines', title:'Populations riveraines & justice environnementale', desc:'Santé des communautés exposées et équité dans la répartition des risques.'},
+  {id:'travail', icon:'icon-hard-hat', short:'Santé au travail', title:'Santé au travail en contexte minier', desc:'Travailleurs artisanaux et industriels : exposition, surveillance médicale, prévention.'},
+  {id:'labo', icon:'icon-microscope', short:'Laboratoire', title:'Biologie médicale & qualité laboratoire', desc:'Audit de laboratoires par un auditeur qualifié de la DLS, démarche qualité et accompagnement vers l’accréditation ISO 15189.'},
+  {id:'politiques', icon:'icon-landmark', short:'Politiques publiques', title:'Politiques publiques & délocalisations', desc:'Évaluation des politiques de santé et des processus de délocalisation de populations.'},
+  {id:'formation', icon:'icon-graduation-cap', short:'Formation', title:'Formation & renforcement des capacités', desc:'Formations certifiantes, encadrement académique et transfert de compétences.'}
+];
+const COLLABS = [
+  {id:'conseil', label:'Conseil'}, {id:'expertise', label:'Expertise'}, {id:'formation', label:'Formation'},
+  {id:'recherche', label:'Recherche'}, {id:'encadrement', label:'Encadrement'}
+];
+const EXPERTS = [
+  {id:'malandji', initials:'AM', name:'Prof Dr Adrien Malandji Kes', title:'MPH, PhD · Professeur', affil:'École de Santé Publique, Université de Kolwezi', spec:'Santé publique & santé environnementale minière', tags:['Métaux lourds','Populations riveraines','One Health'], axes:['env','pop','onehealth','politiques','formation'], collab:['conseil','expertise','recherche','encadrement','formation'], bio:'Spécialiste de la santé publique et de la santé environnementale en contexte minier, il coordonne les travaux du centre sur l’exposition des populations aux métaux lourds, la radioactivité et les délocalisations autour de Kolwezi. [Biographie détaillée à compléter]'},
+  {id:'miji', initials:'JM', name:'Ir. Jean-Serge Miji Kamwengo', title:'Ingénieur', affil:'CEISP-L', spec:'Expertise environnementale et minière', tags:['Études d’impact','Remblais & sites','Cartographie'], axes:['env','politiques'], collab:['conseil','expertise'], bio:'Ingénieur, il apporte au centre une expertise environnementale et minière : caractérisation des sites, remblais, études d’impact et cartographie des zones d’exposition. [Biographie détaillée à compléter]'},
+  {id:'mbangu', initials:'JP', name:'Ass. Dr Jean de la Paix Mbangu', title:'Chercheur associé', affil:'CEISP-L · École de Santé Publique', spec:'Santé publique', tags:['Enquêtes populationnelles','Évaluation','Formation'], axes:['epi','politiques','formation'], collab:['recherche','formation','encadrement'], bio:'Chercheur associé en santé publique, il intervient sur les enquêtes populationnelles, l’évaluation de programmes et l’encadrement des étudiants. [Biographie détaillée à compléter]'},
+  {id:'tshiund', initials:'ET', name:'Dr Eddy Tshiund', title:'Auditeur qualifié · DLS', affil:'Direction des Laboratoires de Santé (DLS) · CEISP-L', spec:'Audit de laboratoires de biologie médicale', tags:['Audit qualité','ISO 15189','Biologie médicale'], axes:['labo','formation'], collab:['expertise','conseil','formation'], bio:'Auditeur qualifié de la Direction des Laboratoires de Santé (DLS), il conduit les audits de laboratoires de biologie médicale et accompagne leur mise en conformité, de l’évaluation initiale jusqu’à la préparation à l’accréditation ISO 15189. [Biographie détaillée à compléter]'},
+  {id:'epi', open:true, initials:'—', name:'Épidémiologiste One Health', title:'Profil à pourvoir', affil:'Recrutement ouvert', spec:'Zoonoses & surveillance intégrée', tags:['Mpox','Modélisation','Zoonoses'], axes:['epi','onehealth'], collab:['expertise','recherche'], bio:'Le CEISP-L recherche un·e épidémiologiste pour renforcer ses travaux de surveillance intégrée humain–animal–environnement, notamment sur le Mpox et les zoonoses.'},
+  {id:'qual', open:true, initials:'—', name:'Qualiticien·ne de laboratoire', title:'Profil à pourvoir', affil:'Recrutement ouvert', spec:'Qualité labo & ISO 15189', tags:['ISO 15189','Biologie médicale','Audit'], axes:['labo','formation'], collab:['conseil','formation'], bio:'Le centre recherche un·e spécialiste qualité pour accompagner les laboratoires de la province vers l’accréditation ISO 15189.'},
+  {id:'data', open:true, initials:'—', name:'Data scientist en santé', title:'Profil à pourvoir', affil:'Recrutement ouvert', spec:'Données de santé & géostatistique', tags:['SIG','Biostatistique','Tableaux de bord'], axes:['epi','env'], collab:['expertise','recherche'], bio:'Le centre recherche un·e data scientist pour structurer les données de surveillance et produire analyses spatiales et tableaux de bord.'}
+];
+const STATS = [
+  {value:'12', label:'Experts membres'}, {value:'8', label:'Domaines d’expertise'},
+  {value:'6', label:'Projets en cours'}, {value:'40+', label:'Publications scientifiques'}
+];
+const OFFERS = [
+  {title:'Pour les entreprises', icon:'icon-building-2', color:'var(--copper)', items:['Audits et études d’impact sanitaire et environnemental','Évaluation de l’exposition des travailleurs aux poussières, métaux lourds et agents chimiques','Accompagnement en santé au travail et surveillance médicale','Audit de laboratoires de biologie médicale (auditeur qualifié DLS)','Conseil en responsabilité sanitaire et sociale (RSE)','Formations sur site']},
+  {title:'Pour les universités', icon:'icon-graduation-cap', color:'var(--accent)', items:['Encadrement de mémoires et thèses','Co-publications scientifiques','Terrains de recherche encadrés dans le Lualaba','Formations certifiantes et séminaires conjoints','Partenariats de recherche internationaux']},
+  {title:'Pour les institutions & bailleurs', icon:'icon-globe', color:'var(--green)', items:['Expertise technique (OMS, Africa CDC, agences nationales)','Évaluations de programmes de santé','Audits qualité des laboratoires de biologie médicale','Études épidémiologiques et enquêtes populationnelles','Consultance en One Health et surveillance des zoonoses','Appui à l’élaboration de politiques publiques']}
+];
+const ENGAGEMENTS = [
+  {num:'01', title:'Mesurer', desc:'Cartographier air, eau, sols, métaux lourds et radioactivité.'},
+  {num:'02', title:'Protéger', desc:'Réduire l’exposition des enfants, femmes enceintes, riverains et travailleurs.'},
+  {num:'03', title:'Planifier', desc:'Coordonner urbanisme, concessions minières et zones de sécurité.'},
+  {num:'04', title:'Accompagner justement', desc:'Évaluer les biens à leur valeur réelle, garantir un recours indépendant.'},
+  {num:'05', title:'Transparence', desc:'Publier critères, montants, protocoles et résultats de surveillance.'},
+  {num:'06', title:'Restaurer', desc:'Réhabiliter les sites, sécuriser les remblais et restaurer les écosystèmes.'}
+];
+const PROJECTS = [
+  {tag:'Santé environnementale', status:'Publication', img:'photo : prélèvements, laboratoire', imgAlt:'Emplacement image : prélèvements biologiques', title:'Cobalt urinaire chez les enfants des zones d’exploitation artisanale', desc:'Biomonitoring de l’exposition au cobalt et aux métaux associés chez les enfants vivant à proximité des sites artisanaux.', ref:'Cf. Banza Lubaba Nkulu C. et al., Nature Sustainability, 2018'},
+  {tag:'Radioprotection', status:'En cours', img:'photo : site du remblai T17', imgAlt:'Emplacement image : site du remblai T17', title:'Remblai T17 : l’enjeu radiologique', desc:'Caractérisation de l’uranium, du radon et du cobalt et évaluation du risque pour les populations voisines.', ref:'Rapport technique — à compléter'},
+  {tag:'Politiques publiques', status:'En cours', img:'photo : quartiers de Kolwezi', imgAlt:'Emplacement image : quartiers de Kolwezi', title:'Délocalisations autour de Kolwezi', desc:'Effets sanitaires et sociaux des délocalisations à Kasulo, Mukumbi et Tshabula ; équité des compensations.', ref:'Publication en préparation'},
+  {tag:'One Health', status:'Projet', img:'carte : risque Mpox, Lualaba', imgAlt:'Emplacement image : carte du risque Mpox', title:'Modélisation du risque Mpox dans les zones minières', desc:'Approche One Health intégrant mobilité, faune et densité humaine pour cibler la surveillance.', ref:'Note conceptuelle — à compléter'}
+];
+
+class Component extends DCLogic {
+  state = { themeOverride: null, axis: 'all', collab: 'all', selectedId: null, submitted: false, formAxis: '' };
+
+  componentDidMount() {
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.selectedId) this.setState({ selectedId: null }); };
+    window.addEventListener('keydown', this._onKey);
+    this.setupReveal();
+  }
+  componentDidUpdate() { this.setupReveal(); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._onKey); this._io && this._io.disconnect(); }
+
+  setupReveal() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'none'; this._io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }
+    document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((el) => {
+      el.setAttribute('data-revealed', '1');
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(14px)';
+      el.style.transition = (el.style.transition ? el.style.transition + ',' : '') + 'opacity .7s ease, transform .7s ease';
+      this._io.observe(el);
+    });
+  }
+
+  scrollToContact() {
+    const el = document.getElementById('contact');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const theme = this.state.themeOverride || this.props.theme || 'light';
+    const { axis, collab } = this.state;
+    const chip = (active, onClick, label) => ({
+      label, onClick, pressed: active ? 'true' : 'false',
+      bg: active ? 'var(--primary)' : 'transparent',
+      color: active ? 'var(--onprimary)' : 'var(--ink)',
+      border: active ? 'var(--primary)' : 'var(--line)'
+    });
+    const axisChips = [chip(axis === 'all', () => this.setState({ axis: 'all' }), 'Tous')]
+      .concat(AXES.map(a => chip(axis === a.id, () => this.setState({ axis: a.id }), a.short)));
+    const collabChips = [chip(collab === 'all', () => this.setState({ collab: 'all' }), 'Toutes')]
+      .concat(COLLABS.map(c => chip(collab === c.id, () => this.setState({ collab: c.id }), c.label)));
+
+    const filtered = EXPERTS.filter(e => (axis === 'all' || e.axes.includes(axis)) && (collab === 'all' || e.collab.includes(collab)));
+    const shownExperts = filtered.map(e => ({
+      ...e, open: !!e.open, borderStyle: e.open ? 'dashed' : 'solid',
+      cta: e.open ? 'Voir le poste' : 'Voir le profil',
+      photoAlt: e.open ? 'Emplacement photo : profil à pourvoir' : 'Emplacement photo : ' + e.name,
+      onOpen: () => this.setState({ selectedId: e.id })
+    }));
+    const members = filtered.filter(e => !e.open).length;
+    const s = EXPERTS.find(e => e.id === this.state.selectedId);
+    const sel = s ? {
+      ...s,
+      axisLabels: s.axes.map(id => AXES.find(a => a.id === id).short),
+      collabLabels: s.collab.map(id => COLLABS.find(c => c.id === id).label),
+      contactCta: s.open ? 'Proposer une candidature' : 'Solliciter cet expert'
+    } : {};
+
+    return {
+      theme, isDark: theme === 'dark', isLight: theme !== 'dark',
+      themeLabel: theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre',
+      toggleTheme: () => this.setState({ themeOverride: theme === 'dark' ? 'light' : 'dark' }),
+      stats: STATS, axes: AXES, offers: OFFERS, engagements: ENGAGEMENTS, projects: PROJECTS,
+      axisChips, collabChips, shownExperts, noResults: filtered.length === 0,
+      resultLabel: members + ' membre' + (members > 1 ? 's' : '') + ' · ' + (filtered.length - members) + ' poste' + ((filtered.length - members) > 1 ? 's' : '') + ' ouvert' + ((filtered.length - members) > 1 ? 's' : ''),
+      resetFilters: () => this.setState({ axis: 'all', collab: 'all' }),
+      hasSelected: !!s, sel,
+      closeProfile: () => this.setState({ selectedId: null }),
+      stop: (e) => e.stopPropagation(),
+      contactFromProfile: () => { this.setState({ selectedId: null, formAxis: s ? s.axes[0] : '', submitted: false }); setTimeout(() => this.scrollToContact(), 30); },
+      formAxis: this.state.formAxis,
+      onAxisChange: (e) => this.setState({ formAxis: e.target.value }),
+      submitted: this.state.submitted, notSubmitted: !this.state.submitted,
+      onSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      resetForm: () => this.setState({ submitted: false, formAxis: '' }),
+      whatsappUrl: 'https://wa.me/' + (this.props.whatsappNumber || '243000000000'),
+      showFloat: this.props.showWhatsappFloat ?? true,
+      year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>
